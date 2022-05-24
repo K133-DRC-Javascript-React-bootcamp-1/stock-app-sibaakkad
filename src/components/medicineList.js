@@ -40,7 +40,6 @@ function MedicineList() {
           ))}
         </tbody>
       </Table>
-      <PaginationData/>
       <AddData />
     </div>
   );
