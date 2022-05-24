@@ -5,6 +5,9 @@ import EditData from './editData';
 import DeleteData from './deleteData';
 import sortFunction from '../context/sort';
 import AddData from './addData';
+import SearchData from './search';
+import PaginationData from './pagination';
+
 import '../css/style.css';
 
 function MedicineList() {
@@ -13,6 +16,7 @@ function MedicineList() {
   return (
     <div class="list-continer">
       <h1>Stock System</h1>
+      <SearchData />
       <Table striped bordered hover >
         <thead>
           <tr>
@@ -30,12 +34,13 @@ function MedicineList() {
               <td>{element.stock}</td>
               <td>{element.price}
                 <span> &#8378;</span> </td>
-              <td ><EditData dataParentToChild={index} /></td>
-              <td><DeleteData dataParentToChild={index} /></td>
+              <td ><EditData dataParentToChild={element.id} /></td>
+              <td><DeleteData dataParentToChild={element.id} /></td>
             </tr>
           ))}
         </tbody>
       </Table>
+      <PaginationData/>
       <AddData />
     </div>
   );

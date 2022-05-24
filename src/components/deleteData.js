@@ -3,15 +3,17 @@ import { useState, useContext } from "react";
 import arrayContext from '../context/arrayContext';
 
 function DeleteData({ dataParentToChild }) {
-  const { data, setData } = useContext(arrayContext);
+  const { data, setData, tempArray, setTempArray } = useContext(arrayContext);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+
   const submit = function () {
-    const newList = data.filter((item, i) => i !== dataParentToChild);
+    const newList = tempArray.filter((item) => item.id !== dataParentToChild);
     setData(newList);
+    setTempArray(newList);
     setShow(false);
   };
   return (

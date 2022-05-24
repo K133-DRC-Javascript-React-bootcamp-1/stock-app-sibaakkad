@@ -15,3 +15,17 @@
   width: 40%;
   margin-top: 10px;
 }
+
+.search {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+}
+.pagination{
+  margin: auto;
+  text-align: center;
+  
+}
+.pagination a{
+  color: black;
+}

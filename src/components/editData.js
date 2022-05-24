@@ -5,7 +5,7 @@ import arrayContext from '../context/arrayContext';
 
 function EditData({ dataParentToChild }) {
 
-  const { data, setData } = useContext(arrayContext);
+  const { data, setData, tempArray, setTempArray } = useContext(arrayContext);
 
   const [name, setName] = useState("");
   const [stock, setStock] = useState(0);
@@ -17,21 +17,27 @@ function EditData({ dataParentToChild }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+
   const defaultValue = function () {
-    setName(data[dataParentToChild].medicineName);
-    setStock(data[dataParentToChild].stock);
-    setPrice(data[dataParentToChild].price);
+    const selectedItem = tempArray.filter((item) => item.id == dataParentToChild);
+    setName(selectedItem[0].medicineName);
+    setStock(selectedItem[0].stock);
+    setPrice(selectedItem[0].price);
     handleShow()
   };
 
   const submit = function () {
-    data[dataParentToChild] = { medicineName: name, stock: stock, price: price };
-    let t = [];
-    data.forEach(element => {
-      t.push(element);
+    let result = tempArray.map((item) => {
+      if (item.id == dataParentToChild) {
+        item = { id: item.id, medicineName: name, stock: stock, price: price };
+        return item
+      }
+      else {
+        return item
+      }
     });
-    setData(t);
-
+    setData(result);
+    setTempArray(result);
     setShow(false);
   };
   return (
